@@ -1,0 +1,18 @@
+<div class="news-tabs">
+  @for(tab of newsTabs; track $index){
+  <button type="button" (click)="setCategory(tab)">{{ tab }}</button>
+  }
+</div>
+
+<div>
+  @for(current of newsFeed; track $index){ @if(categoriaSelezionata === '' ||
+  categoriaSelezionata === current.categoria){<a
+    (click)="goToNewsDetail(current.newsID)"
+    [title]="current.inputs.cardInput.title + ' details'"
+  >
+    <ng-container
+      *ngComponentOutlet="current.component; inputs: current.inputs"
+    >
+    </ng-container> </a
+  >} }
+</div>

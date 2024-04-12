@@ -1,0 +1,17 @@
+<mat-toolbar>
+  <a mat-icon-button matTooltip="Go to Newsfeed" [routerLink]="['/']">
+    <mat-icon>home</mat-icon>
+  </a>
+
+  @if (userLogged$ | async; as user) {
+  <span> Ciao, {{ user.username }} </span>
+  } @if(userLogged$ | async){
+  <a mat-icon-button matTooltip="Go to Dashboard" routerLink="user">
+    <mat-icon>admin_panel_settings</mat-icon>
+  </a>
+  } @else {
+  <a mat-icon-button routerLink="login" matTooltip="Go to Login">
+    <mat-icon>admin_panel_settings</mat-icon>
+  </a>
+  }
+</mat-toolbar>

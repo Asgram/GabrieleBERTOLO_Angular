@@ -1,0 +1,10 @@
+<button type="button" (click)="addNews()">add news</button>
+
+@for(mynews of news; track mynews; let odd = $odd){
+<div [ngClass]="odd ? 'whiteClass' : 'blackClass'">
+  {{ mynews.titolo }}, {{ mynews.categoria }},
+  {{ mynews.dataModifica ? mynews.dataModifica : mynews.dataCreazione }}
+</div>
+} @empty {
+<div>you have written no news</div>
+}

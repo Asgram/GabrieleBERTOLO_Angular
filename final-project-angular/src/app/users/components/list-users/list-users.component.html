@@ -1,0 +1,7 @@
+@for(user of users; track user; let odd = $odd){
+<div [ngClass]="odd ? 'whiteClass' : 'blackClass'">
+  {{ user.username }} ({{ user.ruolo }}){{
+    user.nomePenna ? "nome d'arte " + user.nomePenna : ""
+  }}
+</div>
+}

@@ -1,0 +1,17 @@
+<div>
+  <h1>{{ news.titolo }}</h1>
+  <div>
+    Di <strong>{{ news.autore?.nomePenna }}</strong>
+  </div>
+  <div>
+    {{
+      news.dataModifica
+        ? "Modificato il: " + news.dataModifica
+        : "Scritto il: " + news.dataCreazione
+    }}
+  </div>
+  <div>
+    <strong>{{ news.categoria }}</strong>
+  </div>
+  <div>{{ news.testo }}</div>
+</div>

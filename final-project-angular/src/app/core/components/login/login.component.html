@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="inner-container">
+    <form [formGroup]="loginForm" class="form-group">
+      <div class="username">
+        <mat-form-field>
+          <mat-label for="username">Username</mat-label>
+          <input
+            matInput
+            id="username"
+            type="text"
+            formControlName="username"
+          />
+        </mat-form-field>
+        <div *ngIf="username.hasError('usernameInUse')">
+          Username alreay in use
+        </div>
+      </div>
+      <mat-form-field>
+        <mat-label for="password">Password</mat-label>
+        <input
+          matInput
+          id="password"
+          [type]="hide ? 'password' : 'text'"
+          formControlName="password"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+      <div *ngIf="isWrongAttempt$ | async" class="alert">
+        <div>{{ isLoginAttempt ? "Log in" : "Sign in" }} invalid</div>
+      </div>
+      <div class="btn-row">
+        <button
+          class="button"
+          type="button"
+          mat-raised-button
+          [disabled]="loginForm.invalid"
+          (click)="login()"
+        >
+          Log In
+        </button>
+        <button
+          class="button"
+          type="button"
+          mat-raised-button
+          (click)="login(false)"
+        >
+          Sign In
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
