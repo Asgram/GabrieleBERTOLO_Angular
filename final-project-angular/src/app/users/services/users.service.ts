@@ -17,4 +17,12 @@ export class UsersService {
       })
     );
   }
+
+  getAuthUserById(id: string): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/authUsers/${id}`).pipe(
+      map((user) => {
+        return user;
+      })
+    );
+  }
 }

@@ -1,5 +1,7 @@
 <h1>Salve {{ authUser?.username }} ({{ authUser?.ruolo }})</h1>
-
+<button mat-icon-button (click)="goToEditUser(authUser?.id ?? '')">
+  <mat-icon>edit</mat-icon>
+</button>
 <div>
   <h3>{{ hide ? "*******" : authUser?.password }}</h3>
 

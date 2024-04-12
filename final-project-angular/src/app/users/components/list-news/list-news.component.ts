@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
 import { Articolo } from '../../../core/models/articolo';
 import { AuthService } from '../../../core/services/auth.service';
 import { User } from '../../models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-news',
@@ -21,7 +22,11 @@ export class ListNewsComponent {
     null
   );
 
-  constructor(private nService: NewsService, private authService: AuthService) {
+  constructor(
+    private nService: NewsService,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.userLogged$ = this.authService.userLogged$;
     this.userLogged$.pipe(takeUntil(this.destroy$)).subscribe((data) => {
       this.authUser = data ?? null;
@@ -40,5 +45,9 @@ export class ListNewsComponent {
     this.destroy$.complete();
   }
 
-  addNews() {}
+  editNews(id: string) {
+    this.router.navigate(['user/editnews'], {
+      queryParams: { newsId: id },
+    });
+  }
 }

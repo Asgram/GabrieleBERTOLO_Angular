@@ -1,7 +1,7 @@
 import { User } from '../../users/models/user';
 
 export class Articolo {
-  id?: string | number;
+  id?: string;
   titolo: string;
   testo: string;
   categoria: string;

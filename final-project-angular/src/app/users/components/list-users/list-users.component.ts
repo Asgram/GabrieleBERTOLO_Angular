@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { User } from '../../models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-users',
@@ -14,11 +15,17 @@ export class ListUsersComponent implements OnDestroy {
 
   users!: Array<User>;
 
-  constructor(private userService: UsersService) {
+  constructor(private userService: UsersService, private router: Router) {
     this.users$ = this.userService.getAuthUsers();
     this.users$.pipe(takeUntil(this.destroy$)).subscribe((u) => {
       console.log(u);
       this.users = u;
+    });
+  }
+
+  goToEditUser(id: string) {
+    this.router.navigate(['user/edituser'], {
+      queryParams: { userId: id },
     });
   }
 

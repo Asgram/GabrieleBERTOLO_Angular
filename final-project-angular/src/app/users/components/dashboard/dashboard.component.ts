@@ -25,6 +25,13 @@ export class DashboardComponent implements OnDestroy {
       this.authUser = data ?? null;
     });
   }
+
+  goToEditUser(id: string) {
+    this.router.navigate(['user/edituser'], {
+      queryParams: { userId: id },
+    });
+  }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();

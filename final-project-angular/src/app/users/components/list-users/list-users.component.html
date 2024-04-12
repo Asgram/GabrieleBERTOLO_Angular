@@ -1,5 +1,9 @@
 @for(user of users; track user; let odd = $odd){
+
 <div [ngClass]="odd ? 'whiteClass' : 'blackClass'">
+  <button mat-icon-button (click)="goToEditUser(user.id ?? '')">
+    <mat-icon>edit</mat-icon>
+  </button>
   {{ user.username }} ({{ user.ruolo }}){{
     user.nomePenna ? "nome d'arte " + user.nomePenna : ""
   }}
