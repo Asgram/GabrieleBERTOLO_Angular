@@ -7,15 +7,27 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { userResolver } from './resolvers/user.resolver';
 import { newsResolver } from './resolvers/news.resolver';
+import { noreaderGuard } from './guards/noreader.guard';
+import { writerGuard } from './guards/writer.guard';
+import { adminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
     title: 'Dashboard',
+    canActivateChild: [noreaderGuard],
     children: [
-      { path: 'mynews', component: ListNewsComponent },
-      { path: 'authusers', component: ListUsersComponent },
+      {
+        path: 'mynews',
+        component: ListNewsComponent,
+        canActivate: [writerGuard],
+      },
+      {
+        path: 'authusers',
+        component: ListUsersComponent,
+        canActivate: [adminGuard],
+      },
     ],
   },
   {

@@ -4,6 +4,7 @@ import { LandingPageComponent } from './core/components/landing-page/landing-pag
 import { LoginComponent } from './core/components/login/login.component';
 import { NewsDetailComponent } from './core/components/news-detail/news-detail.component';
 import { newsDetailResolver } from './core/resolvers/news-detail.resolver';
+import { authGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, title: 'News Feed' },
@@ -19,6 +20,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./users/users.module').then((m) => m.UsersModule),
     title: 'User Dashboard',
+    canActivate: [authGuard],
   },
 ];
 
